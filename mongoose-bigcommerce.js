@@ -598,9 +598,10 @@ const processSubArray = (name, item) => {
     const processedKey = transformKey(key, type);
 
     if(type === 'object') {
-      processSubObject(value.properties);
+      processSubObject(processedKey, value.properties);
     } else if (type === 'array') {
-    	processSubArray(processedKey, value.properties);
+    	console.log('KEY', key, value)
+    	processSubArray(processedKey, value.items.properties);
     } else {
     	schema += `  ${processedKey}: {\n    trim: true,\n    type: ${convertType(type)},\n  },\n`;
     }
